@@ -52,15 +52,15 @@ class MasterApplication: Application() {
     }
 
     fun checkIsLogIn(): Boolean {
-        val sharedPreference = getSharedPreferences("login_sharedPreference", Context.MODE_PRIVATE)
-        val token = sharedPreference.getString("login_sharedPreference", "null")
+        val sp = getSharedPreferences("login_sp", Context.MODE_PRIVATE)
+        val token = sp.getString("login_sp", "null")
         if (token != "null") return true
         else return false
     }
 
     fun getUserToken(): String? {
-        val sharedPreference = getSharedPreferences("login_sharedPreference", Context.MODE_PRIVATE)
-        val token = sharedPreference.getString("login_sharedPreference", "null")
+        val sp = getSharedPreferences("login_sp", Context.MODE_PRIVATE)
+        val token = sp.getString("login_sp", "null")
         if (token == "null") return null
         else return token
     }
