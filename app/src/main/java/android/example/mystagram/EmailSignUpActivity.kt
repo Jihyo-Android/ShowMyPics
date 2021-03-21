@@ -24,10 +24,16 @@ class EmailSignUpActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_email_sign_up)
 
-        initView(this)
-        setupListener(this)
+        if ((application as MasterApplication).checkIsLogIn()) {
+            finish()
+            startActivity(Intent(this, ShowMyPicsPostListActivity::class.java))
+        } else {
+            setContentView(R.layout.activity_email_sign_up)
+
+            initView(this)
+            setupListener(this)
+        }
     }
 
     fun setupListener(activity: Activity) {
@@ -60,6 +66,10 @@ class EmailSignUpActivity : AppCompatActivity() {
                         val token = user!!.token!!
                         saveUserToken(token, activity)
                         (application as MasterApplication).createRetrofit()
+
+                        activity.startActivity(
+                            Intent(activity, ShowMyPicsPostListActivity::class.java)
+                        )
                     }
                 }
             })

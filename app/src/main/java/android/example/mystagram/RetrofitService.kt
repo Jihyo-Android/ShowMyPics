@@ -31,4 +31,7 @@ interface RetrofitService{
         @Field("username") username: String,
         @Field("password") password: String
     ): Call<User>
+
+    @GET("/instagram/post/list/all/")
+    fun getAllPosts(): Call<ArrayList<Post>>
 }
